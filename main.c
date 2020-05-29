@@ -15,16 +15,16 @@
 int main(void)
 {
     XVideoSetMode(SCREEN_WIDTH, SCREEN_HEIGHT, 32, REFRESH_DEFAULT);
-	size_t fb_size = 640 * 480 * sizeof(uint32_t);
-	extern uint8_t* _fb;
-	_fb = (uint8_t*)MmAllocateContiguousMemoryEx(fb_size,
-												0,
-												0xFFFFFFFF,
-												0x1000,
-												PAGE_READWRITE | PAGE_WRITECOMBINE);
-	memset(_fb, 0x00, fb_size);
-	#define _PCRTC_START 0xFD600800
-	*(unsigned int*)(_PCRTC_START) = (unsigned int)_fb & 0x03FFFFFF;
+    size_t fb_size = 640 * 480 * sizeof(uint32_t);
+    extern uint8_t* _fb;
+    _fb = (uint8_t*)MmAllocateContiguousMemoryEx(fb_size,
+                                                0,
+                                                0xFFFFFFFF,
+                                                0x1000,
+                                                PAGE_READWRITE | PAGE_WRITECOMBINE);
+    memset(_fb, 0x00, fb_size);
+    #define _PCRTC_START 0xFD600800
+    *(unsigned int*)(_PCRTC_START) = (unsigned int)_fb & 0x03FFFFFF;
 
     // Initialize SDL
     SDL_SetHint(SDL_HINT_JOYSTICK_ALLOW_BACKGROUND_EVENTS, "1");
@@ -53,10 +53,10 @@ int main(void)
 
     // Open audio device
     SDL_AudioDeviceID dev = SDL_OpenAudioDevice(NULL,
-	                                            0, //0 = playback
-												&wavFileSpec,
-												&obtainedSpec,
-												SDL_AUDIO_ALLOW_ANY_CHANGE);
+                                                0, //0 = playback
+                                                &wavFileSpec,
+                                                &obtainedSpec,
+                                                SDL_AUDIO_ALLOW_ANY_CHANGE);
     printf("Required Xbox Audio Spec:\n");
     printf("Frequency: %uHz\n",obtainedSpec.freq);
     printf("Format: %04x\n",obtainedSpec.format);
