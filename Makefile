@@ -9,7 +9,4 @@ include $(NXDK_DIR)/Makefile
 
 copy_resources:
 	@mkdir -p $(OUTPUT_DIR)
-	@cp $(CURDIR)/assets/426669_44.1.wav $(OUTPUT_DIR)/426669_44.1.wav
-	@cp $(CURDIR)/assets/426669_48.wav $(OUTPUT_DIR)/426669_48.wav
-	@cp $(CURDIR)/assets/426669_16.wav $(OUTPUT_DIR)/426669_16.wav
-	@cp $(CURDIR)/assets/426669_96.wav $(OUTPUT_DIR)/426669_96.wav
+	@cp $(CURDIR)/assets/500hz48000.wav $(OUTPUT_DIR)/500hz48000.wav
